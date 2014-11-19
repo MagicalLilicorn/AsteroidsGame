@@ -1,19 +1,18 @@
 //your variable declarations here
-Asteroid[] asteroids;
-SpaceShip spaceDandy;
-Star[] space;
+public int numAsteroids = 10;
+ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
+SpaceShip spaceDandy = new SpaceShip();
+Star[] space = new Star[100];
 public void setup() {
   //your code here
-  size(600,600);
-  spaceDandy = new SpaceShip();
-  space = new Star[100];
+  size(600,600);  
   for (int i = 0; i < space.length; i++){
     space[i] = new Star();
     space[i].show();
   }
-  asteroids = new Asteroid[10];
-  for(int i=0; i<asteroids.length; i++){
-    asteroids[i] = new Asteroid();
+
+  for(int i = 0; i < numAsteroids; i++){
+    asteroids.add(new Asteroid());
   }
 }
 public void draw() {
@@ -22,12 +21,16 @@ public void draw() {
   for (int i = 0; i < space.length; i++){
     space[i].show();
   }
-  for(int i=0; i<asteroids.length; i++){
-    asteroids[i].show();
-    asteroids[i].move();
-  }
   spaceDandy.show();
   spaceDandy.move();
+  for(int i = 0; i < asteroids.size(); i++) {
+   if(dist(asteroids.get(i).getX(), asteroids.get(i).getY(), spaceDandy.getX(), spaceDandy.getY()) < 30)
+      asteroids.remove(i);
+    else {
+      asteroids.get(i).show();
+      asteroids.get(i).move();
+    }  
+  }
 }
 public void keyPressed() {
   if(keyCode == UP) {spaceDandy.accelerate(0.1);}
