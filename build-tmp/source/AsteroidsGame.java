@@ -18,7 +18,7 @@ public class AsteroidsGame extends PApplet {
 public int numAsteroids = 10;
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 SpaceShip spaceDandy = new SpaceShip();
-Star[] space = new Star[100];
+Star[] space = new Star[200];
 public void setup() {
   //your code here
   size(600,600);  
@@ -72,7 +72,7 @@ class Star {
 
   public void show(){
     noStroke();
-    fill(255);
+    fill(255,255,255, random(40,100));
     float angle = TWO_PI / 5;
     float halfAngle = angle/2.0f;
     beginShape();
@@ -137,6 +137,16 @@ class Asteroid extends Floater {
   public double getPointDirection() {return myPointDirection;} 
 
 }
+// class Bullet extends Floater{
+// myColor = color(255, 255, 255);
+//     myCenterX = 300;
+//     myCenterY = 300;
+//     myDirectionX = 0;
+//     myDirectionY = 0;
+//     myPointDirection = 0;
+//     double dRadians = myPointDirection*()
+
+// }
 class SpaceShip extends Floater  { 
   public SpaceShip() {
     corners = 4;
