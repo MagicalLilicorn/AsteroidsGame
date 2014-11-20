@@ -21,7 +21,7 @@ SpaceShip spaceDandy = new SpaceShip();
 Star[] space = new Star[200];
 public void setup() {
   //your code here
-  size(600,600);  
+  size(500,500);  
   for (int i = 0; i < space.length; i++){
     space[i] = new Star();
     space[i].show();
@@ -66,8 +66,8 @@ class Star {
   int myX;
   int myY;
   public Star() {
-    myX = (int)(Math.random()*600);
-    myY = (int)(Math.random()*600);
+    myX = (int)(Math.random()*500);
+    myY = (int)(Math.random()*500);
   }
 
   public void show(){
@@ -115,7 +115,7 @@ class Asteroid extends Floater {
 
     myColor = color(92, 92, 92);   
     myCenterX = (int)(Math.random()*1000);
-    myCenterY = (int)(Math.random()*600);
+    myCenterY = (int)(Math.random()*500);
     myDirectionX = (int)(Math.random()*3)-1;
     myDirectionY = (int)(Math.random()*3)-1;
   }
@@ -137,14 +137,14 @@ class Asteroid extends Floater {
   public double getPointDirection() {return myPointDirection;} 
 
 }
-// class Bullet extends Floater{
-// myColor = color(255, 255, 255);
-//     myCenterX = 300;
-//     myCenterY = 300;
-//     myDirectionX = 0;
+// class Bullet extends Floater {
+//     myColor = color(255, 255, 255);
+//     myCenterX = 250;
+//     myCenterY = 250;
+//     myDirectionX = 5*Math.cos(dRadians);
 //     myDirectionY = 0;
 //     myPointDirection = 0;
-//     double dRadians = myPointDirection*()
+//     double dRadians = myPointDirection*(Math.PI/180);
 
 // }
 class SpaceShip extends Floater  { 
@@ -161,8 +161,8 @@ class SpaceShip extends Floater  {
     xCorners[3] = -8;
     yCorners[3] = -8;
     myColor = color(255, 255, 255);
-    myCenterX = 300;
-    myCenterY = 300;
+    myCenterX = 250;
+    myCenterY = 250;
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
