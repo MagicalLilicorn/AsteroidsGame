@@ -7,9 +7,13 @@ body {
 }
 
 #content {
-    display: block;
+    float:left;
     margin-left: auto;
     margin-right: auto
+}
+
+#instructions {
+    float:left;
 }
 
 header {

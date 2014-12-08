@@ -1,11 +1,13 @@
+//your variable declarations here
 public int numAsteroids = 10;
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 SpaceShip spaceDandy = new SpaceShip();
 Star[] space = new Star[200];
 ArrayList <Bullet> bullets = new ArrayList <Bullet>();
+PFont f;
 
 public void setup() {
-  size(500,500);  
+  size(600,600);  
   for (int i = 0; i < space.length; i++){
     space[i] = new Star();
     space[i].show();
@@ -14,6 +16,8 @@ public void setup() {
   for(int i = 0; i < numAsteroids; i++){
     asteroids.add(new Asteroid());
   }
+  f = createFont("Arial",16,true); // Arial, 16 point, anti-aliasing on
+
 }
 public void draw() {
   background(0);
@@ -24,8 +28,11 @@ public void draw() {
   spaceDandy.move();
   for(int aI = 0; aI < asteroids.size(); aI++) {
     if(dist(asteroids.get(aI).getX(), asteroids.get(aI).getY(), spaceDandy.getX(), spaceDandy.getY()) < 30) {
-      spaceDandy.setX(350);
-      spaceDandy.setY(350);
+      fill(200,200,200);
+      textFont(f,60);
+      text("YOU DIED",10,300);
+      spaceDandy.setX(300);
+      spaceDandy.setY(300);
       spaceDandy.setDirectionX(0);
       spaceDandy.setDirectionY(0);
     }
@@ -33,8 +40,13 @@ public void draw() {
       if(dist(asteroids.get(aI).getX(), asteroids.get(aI).getY(), bullets.get(bI).getX(), bullets.get(bI).getY()) < 20) {
         asteroids.remove(aI);
         bullets.remove(bI);
+        break;
       }
     }
+  }
+  for(int aI = 0; aI < asteroids.size(); aI++) {
+    asteroids.get(aI).show();
+    asteroids.get(aI).move();    
   }
   for(int bI = 0; bI < bullets.size(); bI++) {
     bullets.get(bI).show();
@@ -53,14 +65,17 @@ public void keyPressed() {
     spaceDandy.setDirectionX(0);
     spaceDandy.setDirectionY(0);
   }
+  else if(keyCode == 90) {
+    bullets.add(new Bullet(spaceDandy));
+  }
 }
 
 class Star {
   int myX;
   int myY;
   public Star() {
-    myX = (int)(Math.random()*500);
-    myY = (int)(Math.random()*500);
+    myX = (int)(Math.random()*600);
+    myY = (int)(Math.random()*600);
   }
 
   public void show(){
@@ -108,7 +123,7 @@ class Asteroid extends Floater {
 
     myColor = color(92, 92, 92);   
     myCenterX = (int)(Math.random()*1000);
-    myCenterY = (int)(Math.random()*500);
+    myCenterY = (int)(Math.random()*600);
     myDirectionX = (int)(Math.random()*3)-1;
     myDirectionY = (int)(Math.random()*3)-1;
   }
@@ -130,18 +145,16 @@ class Asteroid extends Floater {
   public double getPointDirection() {return myPointDirection;} 
 
 }
-class Bullet extends Floater {
-  private double dRadians;
+class Bullet extends Floater{
   public Bullet(SpaceShip theShip){
-    myColor = color(255, 255, 255);
     myCenterX = theShip.getX();
     myCenterY = theShip.getY();
     myPointDirection = theShip.getPointDirection();
-    dRadians = myPointDirection*(Math.PI/180);
+    double dRadians = myPointDirection*(Math.PI/180);
     myDirectionX = 5*Math.cos(dRadians) + theShip.getDirectionX();
-    myDirectionY = 5*Math.sin(dRadians)+ theShip.getDirectionY();
-
+    myDirectionY = 5*Math.sin(dRadians) + theShip.getDirectionY();
   }
+
   public void setX(int x){myCenterX = x;}    
   public void setY(int y){myCenterY = y;}
   public void setDirectionX(double x) {myDirectionX = x;}
@@ -153,20 +166,22 @@ class Bullet extends Floater {
   public double getDirectionX() {return myDirectionX;}   
   public double getDirectionY() {return myDirectionY;}   
   public double getPointDirection() {return myPointDirection;} 
-  
-  public void show() {
-    fill(myColor);
-    ellipse((float)myCenterX,(float)myCenterY,10,10);
+
+  public void show(){
+    fill(255,255,255);
+    ellipse((float)myCenterX,(float)myCenterY,5,5);
   }
-  public void move() {
-    myCenterX += myDirectionX;    
-    myCenterY += myDirectionY; 
+
+  public void move(){
+    myCenterX += myDirectionX;
+    myCenterY += myDirectionY;
   }
 }
 class SpaceShip extends Floater  { 
   public SpaceShip() {
     corners = 4;
     xCorners = new int[corners];
+    yCorners = new int[corners];
     xCorners[0] = -2;
     yCorners[0] = 0;
     xCorners[1] = -8;
@@ -176,8 +191,8 @@ class SpaceShip extends Floater  {
     xCorners[3] = -8;
     yCorners[3] = -8;
     myColor = color(255, 255, 255);
-    myCenterX = 250;
-    myCenterY = 250;
+    myCenterX = 300;
+    myCenterY = 300;
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
@@ -268,4 +283,3 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-
