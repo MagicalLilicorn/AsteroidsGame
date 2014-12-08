@@ -6,14 +6,22 @@ body {
     text-align: center;
 }
 
-#content {
-    float:left;
-    margin-left: auto;
-    margin-right: auto
+section {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    padding: 10px;
 }
-
-#instructions {
-    float:left;
+div#canvas {
+    width: 15%;
+    height: 200px;
+    background: red;
+    float: left;
+}
+div#instructions {
+    margin-left: 15%;
+    height: 200px;
+    background: black;
 }
 
 header {
