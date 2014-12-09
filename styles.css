@@ -14,9 +14,9 @@ section {
     vertical-align: top;
 }
 div#canvas {
-    width: 15%;
+    width: 75%;
     height: 500px;
-    float: center;
+    float: left;
 
 }
 div#instructions {
