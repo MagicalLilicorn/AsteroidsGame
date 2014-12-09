@@ -14,16 +14,15 @@ section {
     vertical-align: top;
 }
 div#canvas {
-    width: 100%;
+    width: 80%;
     height: 500px;
     float: left;
 
 }
 div#instructions {
-    margin-left: 10%;
+    margin-left:5%;
     height: 600px;
     background: black;
-    text-align: center;
 }
 
 header {
