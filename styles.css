@@ -16,11 +16,12 @@ section {
 div#canvas {
     width: 80%;
     height: 500px;
-    float: left;
+    vertical-align:top;
+    
 
 }
 div#instructions {
-    margin-left:5%;
+    vertical-align:bottom;    
     height: 600px;
     background: black;
 }
