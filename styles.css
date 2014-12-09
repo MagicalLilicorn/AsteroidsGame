@@ -14,13 +14,13 @@ section {
     vertical-align: top;
 }
 div#canvas {
-    width: 75%;
+    width: 80%;
     height: 500px;
     float: left;
 
 }
 div#instructions {
-    margin-left: 15%;
+    margin-left: 10%;
     height: 600px;
     background: black;
     text-align: center;
